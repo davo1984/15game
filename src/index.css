@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: ivory;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.tile {
+  background-color: ivory;
+  /* height: calc(width); */
+  height: vw;
+  padding-top: 6%;  /* 1:1 Aspect Ratio */
+  padding-bottom: 6%;  /* 1:1 Aspect Ratio */
+  position: relative;   /* If you want text inside of it */
+}
+
+.emptyTile {
+  background-color: darkgrey;
+  color: darkgray;
+}
+
+.gameTile {
+  background-color: tan;
+  color: black;
+}
