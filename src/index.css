@@ -16,10 +16,10 @@ code {
 .tile {
   background-color: ivory;
   /* height: calc(width); */
-  height: vw;
   padding-top: 6%;  /* 1:1 Aspect Ratio */
   padding-bottom: 6%;  /* 1:1 Aspect Ratio */
   position: relative;   /* If you want text inside of it */
+  min-height: 15vh;
 }
 
 .emptyTile {
