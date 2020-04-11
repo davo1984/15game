@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
 import {Button, Row} from 'reactstrap';
 import Board from './Components/Board.js';
+import SwapTiles from './Components/SwapTiles.js';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       numRows: 4,
-      numCols: 4
+      numCols: 4,
+      tiles: []
     }
     this.resetTiles = this.resetTiles.bind(this);
+    this.handleTilesChange = this.handleTilesChange.bind(this);
+    this.SwapTiles = SwapTiles.bind(this);
   }
-  // TODO due to scope must the reset function be here and not as a component.
+  
   resetTiles() {
-    // walk thru array moving tiles to finished position
     let tempTiles = this.state.tiles;
     console.log('inside resetBoard', tempTiles);
-    // for (let i = 0; i < this.tempTiles.length; i++) {
-    //   let findTileMethod = (element) => element.name === i + 1;
-    //   let tileLocation = this.state.tiles.findIndex(findTileMethod);
-    //   this.swapTiles(i, tileLocation);
-    // }
+    for (let i = 0; i < tempTiles.length; i++) {
+      let findTileMethod = (element) => element.name === i + 1;
+      let tileLocation = this.state.tiles.findIndex(findTileMethod);
+      let outTiles = this.SwapTiles(i, tileLocation, tempTiles);
+      this.setState({ tiles: outTiles });
+    }
+  }
+
+  handleTilesChange(tiles) {
+    this.setState({ tiles });
   }
   
   componentDidMount() {
-    for ( let i=0; i<16; i++ ) {
+    // TODO add async & wait    how?    is needed?
+    // TODO create array row    Looks like it works!
+    for ( let i=0; i < ( this.state.numRows * this.state.numCols ); i++ ) {
       let isSpace = false;
       if ( i === 15 ) {
         isSpace = true;
       }
+      this.state.tiles.push({ name: i+1, location: i, isEmpty: isSpace });
       this.setState({
         name: i,
         location: i,
         isEmpty: isSpace,
         // display: ''   set slice of picture
       });
-      }
+    }
   }
     
   render() {
@@ -47,11 +58,12 @@ class App extends Component {
           </header>
         </div>
         <div className="row align-items-center">
-          <div className="col-6 offset-3 align-self-center">
+          <div className="col-6 offset-3 align-self-center border border-rounded">
             <Board 
               numRows={this.state.numRows}
               numCols={this.state.numCols}
-              initTiles={this.state.initTiles}
+              tiles={this.state.tiles}
+              onChangeTiles={this.handleTilesChange}
             />
           </div>
         </div>
@@ -63,10 +75,7 @@ class App extends Component {
               <Button color="success" size="lg">Shuffle</Button>{' '}
               {/* &nbsp;&nbsp;&nbsp;  This will add space between the buttons */}
               <Button color="info" size="lg">Slow Shuffle</Button>{' '}
-              
-              {/* TODO How to call Board to recreate board in proper place */}
-              {/* A: walk thru array finding location of correct tile then call swapTiles */}
-              <Button color="warning" size="lg">Reset</Button>{this.resetTiles()}
+              <Button color="warning" size="lg" onClick={this.resetTiles}>Reset</Button>
               </div>
           </footer>
         </Row>

@@ -7,7 +7,7 @@ class Tile extends Component {
   }             // convert to function if no state
   // click handle method goes here ???
   render() {
-    console.log('inside Tile KNLiE=', this.props.key, this.props.name, this.props.location, this.props.isEmpty)
+    // console.log('inside Tile KNLiE=', this.props.key, this.props.name, this.props.location, this.props.isEmpty)
     return (
       <div className='display-4'>{this.props.name}</div>
     )

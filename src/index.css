@@ -19,7 +19,8 @@ code {
   padding-top: 6%;  /* 1:1 Aspect Ratio */
   padding-bottom: 6%;  /* 1:1 Aspect Ratio */
   position: relative;   /* If you want text inside of it */
-  min-height: 15vh;
+  width: 15vw;
+  height: calc(width);
 }
 
 .emptyTile {
